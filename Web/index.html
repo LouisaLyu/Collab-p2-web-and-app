@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com/">
   <link href="fonts.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../prototype.css">
 </head>
 
 <body>
@@ -21,8 +22,7 @@
         <button data-go="host" data-nav="host hostPreview hostDone" class="">Host an event</button>
         <button data-go="tickets" data-nav="tickets feedback" class="">My tickets</button>
       </nav>
-      <div class="hdr-r"><button class="btn ghost sm" data-go="host">List your space</button><span
-          class="avatar"></span></div>
+      <div class="hdr-r"><button type="button" class="report-launcher" data-report>Report a concern</button></div>
     </div>
   </header>
 
@@ -33,13 +33,9 @@
       <div class="hero">
         <div class="wrap">
           <div>
-            <h1>Meet people in Munich, without the bar.</h1>
-            <p>Alcohol-free and low-key events near you. Join one tonight, or host your own.</p>
-            <ul>
-              <li>Events within 10 km of you</li>
-              <li>Filter by sobriety level and price</li>
-              <li>Book and pay in two steps</li>
-            </ul>
+            <h1>Find your people in Munich.</h1>
+            <p>Discover alcohol-free meetups and low-alcohol events. Check the alcohol policy before you book, or bring people together by hosting.</p>
+           
             <div class="choices">
               <button class="choice" data-go="discover"><b>I want to join <span>→</span></b><small>Browse events near
                   you and book a spot</small></button>
@@ -679,19 +675,6 @@
 
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div><b style="color:var(--ink);font-weight:600">Collab</b>
-        <p style="margin-top:6px">Wireframe for DESN 44208, Munich</p>
-      </div>
-      <div class="cols">
-        <div><b>Explore</b><span>Events</span><span>Areas</span></div>
-        <div><b>Host</b><span>List your space</span><span>Pricing</span></div>
-        <div><b>About</b><span>Team</span><span>Contact</span></div>
-      </div>
-    </div>
-  </footer>
-
   <div class="notif" id="notif">
     <div class="ai">✉</div>
     <div style="flex:1"><small>now</small><b>Booking confirmed</b>
@@ -735,6 +718,7 @@
 
   <button class="notes-toggle" title="Show or hide notes" onclick="document.body.classList.toggle('notes')">☰</button>
   <script src="app.js"></script>
+<script src="../prototype.js"></script>
 
 
 </body>

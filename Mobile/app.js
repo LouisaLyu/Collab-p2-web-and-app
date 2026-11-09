@@ -122,7 +122,7 @@ function cardHTML(e, clickable = true) {
     <div class="cb">
       <h4>${e.title}</h4>
       <p class="addr">${s.name}<br>${s.street}, ${s.zip} München</p>
-      <p class="price">${priceText(e)} <span class="check">✓</span><small>Total ticket price</small></p>
+      <p class="price">${priceText(e)} <span class="check">✓</span><small>${e.price ? '+ 5% service fee per person' : e.pwyc ? 'Optional contribution at event' : 'No fees'}</small></p>
       <p class="meta">${SOB[e.sob].label} &nbsp;|&nbsp; ${e.date} &nbsp;|&nbsp; ${s.km.toFixed(1)} km</p>
     </div></${clickable ? 'button' : 'div'}>`;
 }
@@ -203,7 +203,7 @@ function renderEvent() {
     <div class="facts">
       <div class="fact"><small>When</small><b>${e.date}<br>${e.time}</b></div>
       <div class="fact"><small>Distance</small><b>${s.km.toFixed(1)} km<br>${s.area}</b></div>
-      <div class="fact"><small>Price</small><b>${priceText(e)}</b></div>
+      <div class="fact"><small>Price</small><b class="price-amount">${priceText(e)}</b></div>
       <div class="fact"><small>Spots left</small><b>${e.spots} of ${e.cap || Math.max(e.spots + 6, 12)}</b></div>
     </div>
     <p class="sec">About</p>
@@ -308,11 +308,18 @@ $('#payBtn').onclick = () => {
 function renderDone() {
   const e = S.cur, s = sp(e), t = S.tickets.find(x => x.id === e.id) || { qty: 1, total: 0, paid: e.price > 0 };
   const ref = 'CX-' + (e.id.toUpperCase() + '4821').slice(0, 6);
+  const contact = contactLabel().replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   $('#doneBody').innerHTML = `
-    <div class="center"><div class="ok">✓</div><p class="done-h">You're going!</p><p class="hint" style="margin:4px 0 18px">Booking ${ref}, ${t.qty} ticket${t.qty > 1 ? 's' : ''}</p></div>
+    <div class="center"><div class="ok">✓</div><p class="done-h">You're going!</p></div>
+    <p class="sec" id="mobileBookingDetails">Booking details</p>
+    <section class="box booking-details" aria-labelledby="mobileBookingDetails">
+      <div class="kv"><span>Booking reference</span><span>${ref}</span></div>
+      <div class="kv"><span>Tickets</span><span>${t.qty} ticket${t.qty > 1 ? 's' : ''}</span></div>
+      <div class="kv"><span>Confirmation sent to</span><span>${contact}</span></div>
+    </section>
     <p class="sec">Payment status</p>
     <div class="box" style="display:flex;justify-content:space-between;align-items:center">
-      <div><b style="font-weight:500">${t.paid ? money(t.total) : 'Free'}</b><p class="hint" style="margin-top:2px">${payLabel()}</p></div>
+      <div><b class="price-amount">${t.paid ? money(t.total) : 'Free'}</b><p class="hint" style="margin-top:2px">${payLabel()}</p></div>
       <span class="status-pill">${t.paid ? '● Paid' : '● No payment needed'}</span>
     </div>
     <p class="sec">Location details</p>
@@ -325,7 +332,7 @@ function renderDone() {
         <button class="btn ghost" style="margin-top:10px;padding:10px">Get directions</button>
       </div></div>
     <p class="sec">Notifications</p>
-    <div class="box" style="font-size:14px">✉ Confirmation sent to <b style="font-weight:500">${$('#email').value || $('#tel').value || 'your contact'}</b>. Reminder 24 h before.</div>`;
+    <div class="box" style="font-size:14px">✉ You get a reminder 24 h before, and a feedback request after the event.</div>`;
   $('#notifTxt').textContent = `Your spot at ${e.title} (${e.date}) is confirmed. Tap for details.`;
   setTimeout(() => $('#notif').classList.add('on'), 500);
   setTimeout(() => $('#notif').classList.remove('on'), 4200);

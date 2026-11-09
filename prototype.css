@@ -1,0 +1,57 @@
+/* Usability updates shared by both wireframe prototypes. */
+:root { --mid:#555; }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid #2458a6; outline-offset:3px; }
+button, input, select, textarea { touch-action:manipulation; }
+.hint, .step, .opt small, .tk small, .card .price small { font-size:14px; line-height:1.5; font-weight:400; }
+.card .price { font-size:24px; font-weight:600; line-height:1.3; }
+.card .price small { display:block; margin:6px 0 0; }
+.bigprice { font-size:36px; font-weight:600; line-height:1.2; }
+.price-amount, .kv.total > span:last-child, .tk .r { font-size:22px; font-weight:600; line-height:1.3; }
+.phone .card .price { font-size:22px; }
+.phone .pricebar .p b { font-size:28px; line-height:1.2; }
+.phone .pricebar { flex-wrap:wrap; }
+.phone .pricebar .p { max-width:100%; }
+.phone .pricebar .btn { min-width:120px; }
+.btn:disabled { color:#333; }
+.ticket-date { display:block; width:fit-content; background:#ededed; color:#111!important; padding:5px 9px; border-radius:5px; font-size:16px!important; font-weight:600!important; margin:8px 0!important; }
+.recurrence, .attendance { margin:18px 0; }
+.booking-details .kv { align-items:flex-start; gap:16px; }
+.booking-details .kv > span:last-child { max-width:65%; min-width:0; text-align:right; overflow-wrap:anywhere; }
+.report-trigger { margin:18px 0; }
+.report-section { margin-top:24px; }
+.report-section h3 { font-size:18px; font-weight:600; }
+.report-section .report-trigger { margin:14px 0 0; }
+.report-ticket { display:block; min-height:44px; margin-top:8px; text-decoration:underline; text-align:left; font-size:14px; }
+.report-launcher { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:8px 12px; border:1.5px solid #111; border-radius:8px; background:#fff; color:#111; font-size:14px; font-weight:600; cursor:pointer; }
+.report-launcher:hover { background:#ededed; }
+.phone .top .report-launcher { flex:0 0 100%; }
+.start-report { float:right; margin-bottom:12px; }
+.report-dialog { width:min(460px,calc(100vw - 32px)); max-height:85dvh; overflow:auto; margin:auto; border:2px solid #111; border-radius:16px; padding:24px; color:#111; background:#fff; }
+.report-dialog::backdrop { background:#0008; }
+.report-dialog h2 { font-size:24px; margin-bottom:10px; }
+.report-actions { display:flex; gap:12px; margin-top:20px; }
+.report-actions .btn { flex:1; margin:0; }
+#hPrice { font-size:22px; min-width:0; }
+#hDate, #hTime, #hRepeat { min-height:48px; cursor:pointer; }
+#hRepeat { margin-top:8px; }
+.home-link { padding:10px; text-decoration:underline; font-size:14px; }
+.page-back-row { padding-top:12px; padding-bottom:12px; flex-shrink:0; }
+.page-back-button { display:inline-flex; align-items:center; justify-content:center; gap:6px; min-width:76px; min-height:44px; padding:8px 12px; border:1px solid #555; border-radius:8px; background:#fff; color:#111; font-size:14px; white-space:nowrap; flex-shrink:0; cursor:pointer; }
+.page-back-button:hover:not(:disabled) { background:#ededed; }
+.page-back-button:disabled { color:#666; border-color:#bbb; cursor:default; }
+.phone .start > .page-back-row { padding-top:0; padding-bottom:4px; }
+.phone .top { flex-wrap:wrap; }
+.filter-heading { font-size:14px; font-weight:600; margin:12px 0 0; }
+.language-button { padding:8px 10px; min-height:44px; border:1px solid #555; border-radius:8px; background:#fff; color:#111; font-size:13px; }
+.phone > .language-button { position:absolute; top:4px; right:18px; z-index:8; min-height:32px; padding:4px 8px; font-size:12px; }
+.phone .status { padding-left:24px; }
+.phone .status > :last-child { visibility:hidden; }
+.top, .foot, .tabs { flex-shrink:0; background:#fff; z-index:4; }
+.body { min-height:0; }
+.tabs { position:sticky; bottom:0; }
+.tabs button { min-height:44px; font-size:14px; justify-content:center; }
+.phone .filters { flex-wrap:wrap; overflow:visible; }
+.phone .filters .chip { min-height:44px; }
+.phone .start { overflow-y:auto; }
+@media(max-width:420px) { .row > * { min-width:0; } .in { max-width:100%; } }
+@media(max-width:820px) { .phone > .language-button { top:auto; bottom:0; right:0; border-radius:8px 0 0 0; font-size:11px; min-height:22px; padding:2px 6px; } .phone .foot { padding-bottom:32px; } }

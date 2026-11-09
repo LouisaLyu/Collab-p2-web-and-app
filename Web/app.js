@@ -109,7 +109,7 @@ if (new URLSearchParams(location.search).has('notes')) document.body.classList.a
     <div class="ph"><span>event photo</span></div>
     <div class="cb"><h4>${e.title}</h4>
       <p class="addr">${s ? `${s.name}<br>${s.street}, ${s.zip} München` : 'Pick a location<br>&nbsp;'}</p>
-      <p class="price">${priceText(e)} <span class="check">✓</span><small>Total ticket price</small></p>
+      <p class="price">${priceText(e)} <span class="check">✓</span><small>${e.price ? '+ 5% service fee per person' : e.pwyc ? 'Optional contribution at event' : 'No fees'}</small></p>
       <p class="meta">${SOB[e.sob].label} &nbsp;|&nbsp; ${e.date}${s ? ` &nbsp;|&nbsp; ${s.km.toFixed(1)} km` : ''}</p>
     </div></${T}>`;
     }
@@ -185,7 +185,7 @@ if (new URLSearchParams(location.search).has('notes')) document.body.classList.a
         <div class="facts">
           <div class="fact"><small>When</small><b>${e.date}<br>${e.time}</b></div>
           <div class="fact"><small>Distance</small><b>${s.km.toFixed(1)} km<br>from you</b></div>
-          <div class="fact"><small>Price</small><b>${priceText(e)}</b></div>
+          <div class="fact"><small>Price</small><b class="price-amount">${priceText(e)}</b></div>
           <div class="fact"><small>Spots left</small><b>${e.spots} of ${e.cap}</b></div>
         </div>
         <p class="eyebrow">About</p>
@@ -199,7 +199,7 @@ if (new URLSearchParams(location.search).has('notes')) document.body.classList.a
         <div class="faces"><i></i><i></i><i></i><i></i><i></i><span class="hint" style="margin:0 0 0 22px">${e.cap - e.spots} going, including some first-timers</span></div>
       </div>
       <aside class="aside"><div class="box">
-        <div class="bigprice">${priceText(e)}</div><p class="hint" style="margin-top:2px">${e.price ? 'per person, fees shown at checkout' : 'no payment needed'}</p>
+        <div class="bigprice">${priceText(e)}</div><p class="hint" style="margin-top:2px">${e.price ? 'per person + 5% service fee' : 'no payment needed'}</p>
         <div class="kv" style="margin-top:16px"><span>Date</span><span>${e.date}</span></div>
         <div class="kv"><span>Time</span><span>${e.time}</span></div>
         <div class="kv"><span>Sobriety</span><span>${SOB[e.sob].label}</span></div>
@@ -281,11 +281,18 @@ if (new URLSearchParams(location.search).has('notes')) document.body.classList.a
     }
     function renderDone() {
       const e = S.cur, s = sp(e), t = S.tickets.find(x => x.id === e.id);
+      const contact = contactLabel().replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
       $('#doneWrap').innerHTML = `
-    <div style="display:flex;gap:22px;align-items:center;padding:44px 0 10px"><div class="ok">✓</div><div><h1 class="pt" style="margin:0">You're going to ${e.title}</h1><p class="sub">Booking CX-${e.id.toUpperCase()}4821, ${t.qty} ticket${t.qty > 1 ? 's' : ''}, confirmation sent to ${contactLabel()}</p></div></div>
+    <div style="display:flex;gap:22px;align-items:center;padding:44px 0 10px"><div class="ok">✓</div><div><h1 class="pt" style="margin:0">You're going to ${e.title}</h1></div></div>
     <div class="steps"><span class="done"><i>✓</i>Details</span><hr><span class="done"><i>✓</i>Confirm and pay</span><hr><span class="on"><i>3</i>Done</span></div>
     <div class="co">
       <div class="main">
+        <p class="eyebrow" id="webBookingDetails">Booking details</p>
+        <section class="box booking-details" aria-labelledby="webBookingDetails">
+          <div class="kv"><span>Booking reference</span><span>CX-${e.id.toUpperCase()}4821</span></div>
+          <div class="kv"><span>Tickets</span><span>${t.qty} ticket${t.qty > 1 ? 's' : ''}</span></div>
+          <div class="kv"><span>Confirmation sent to</span><span>${contact}</span></div>
+        </section>
         <p class="eyebrow">Location details</p>
         <div class="box" style="padding:0;overflow:hidden">
           <div style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px">

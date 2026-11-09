@@ -628,6 +628,23 @@
       --a: 32deg
     }
 
+    @media (min-width:761px) {
+      .hero .wrap > div:first-child {
+        align-self: stretch;
+        display: flex;
+        flex-direction: column
+      }
+
+      .hero .choices {
+        margin-top: auto;
+        flex-shrink: 0
+      }
+
+      .hero .ph {
+        align-self: end
+      }
+    }
+
     .sec-h {
       font-size: 40px;
       font-weight: 400;
