@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Collab App: Mobile Wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="fonts.css" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<aside class="side">
+  <h1>Collab App<br>Mobile Wireframe</h1>
+  <p class="sub">Low/mid fidelity. Built from the team user flow. Click through the phone, or jump to any screen here.</p>
+
+  <div class="lane">
+    <h2>Entry</h2>
+    <ol><li><button data-go="start" class="on">Two options: User or Host <small>Louisa</small></button></li></ol>
+  </div>
+  <div class="lane">
+    <h2>User: I want to join</h2>
+    <ol>
+      <li><button data-go="discover">Discover + search <small>Louisa, Darian</small></button></li>
+      <li><button data-go="event">Select event <small>Louisa</small></button></li>
+      <li><button data-go="info">Fill in info + payment <small>Louisa</small></button></li>
+      <li><button data-go="confirm">Confirm / Pay <small>Louisa</small></button></li>
+      <li><button data-go="done">Review details + status <small>Darian</small></button></li>
+      <li><button data-go="tickets">My tickets <small>Rajat</small></button></li>
+      <li><button data-go="feedback">Feedback after event <small>Rajat</small></button></li>
+    </ol>
+  </div>
+  <div class="lane">
+    <h2>Host: I want to host events</h2>
+    <ol>
+      <li><button data-go="host">Event setup <small>Louisa, Darian</small></button></li>
+      <li><button data-go="hostPreview">Preview <small></small></button></li>
+      <li><button data-go="hostDone">Create the event <small>Louisa</small></button></li>
+    </ol>
+  </div>
+
+  <div class="note" id="note"><b>This screen</b><p>Entry point. The user picks one of the two paths: join events, or host them.</p><div class="by">Sticky: "Two options: User or Hosts" (Louisa)</div></div>
+  <button class="reset" onclick="resetAll()">Reset prototype</button>
+  <p style="margin-top:10px;font-size:13px"><a href="https://gunes.ca/collab_app.html" style="color:var(--ink)">Open the web version →</a></p>
+</aside>
+
+<div class="phone" id="phone">
+  <div class="status"><span>9:41</span><div class="notch"></div><span>▮▮▮ ◔</span></div>
+
+  <!-- START -->
+  <section class="screen start on" id="s-start">
+    <div>
+      <div class="logo">LOGO</div>
+      <h2>Meet people in Munich, without the bar.</h2>
+      <p>Alcohol-free and low-key events near you. Join one, or host your own.</p>
+    </div>
+    <div>
+      <p class="step" style="margin-bottom:2px">How do you want to start?</p>
+      <button class="choice" data-go="discover"><b>I want to join <span>→</span></b><small>Find events within 10 km, filter by sobriety and price</small></button>
+      <button class="choice" data-go="host"><b>I want to host events <span>→</span></b><small>Set up a space, a price, and a sobriety level</small></button>
+    </div>
+  </section>
+
+  <!-- DISCOVER -->
+  <section class="screen" id="s-discover">
+    <div class="top" style="border:none;padding-bottom:6px">
+      <button class="back" data-back="">‹</button>
+      <h3>Explore events in Munich</h3>
+    </div>
+    <div style="padding:0 18px">
+      <div class="search"><span class="ic">⌕</span><input id="q" placeholder="Search areas, spots, events"><button class="ic" id="qx" style="display:none;padding:4px 8px">✕</button></div>
+      <div class="filters">
+        <button class="chip" data-sheet="dist"><span>◎</span><span id="fDist">10 km</span><span class="caret">▾</span></button>
+        <button class="chip" data-sheet="sob"><span id="fSob">Sobriety: Any</span><span class="caret">▾</span></button>
+        <button class="chip" data-sheet="price"><span id="fPrice">Price: Any</span><span class="caret">▾</span></button>
+      </div>
+    </div>
+    <div class="body" style="padding-top:4px">
+      <div class="toolbar"><span id="count"></span></div>
+      <div id="list"></div>
+    </div>
+    <nav class="tabs"><button class="on"><i></i>Discover</button><button data-go="tickets"><i></i>Tickets</button><button><i></i>Profile</button></nav>
+  </section>
+
+  <!-- EVENT -->
+  <section class="screen" id="s-event">
+    <div class="top"><button class="back" data-back="">‹</button><h3>Event</h3><span class="step">♡ Save</span></div>
+    <div class="body" id="eventBody"></div>
+    <div class="foot"><div class="pricebar"><div class="p"><b id="evPrice"></b><small id="evSpots"></small></div><button class="btn" id="joinBtn" data-go="info">Join event</button></div></div>
+  </section>
+
+  <!-- INFO -->
+  <section class="screen" id="s-info">
+    <div class="top"><button class="back" data-back="">‹</button><h3>Your information</h3><span class="step">1 / 2</span></div>
+    <div class="body">
+      <p class="sec">Contact</p>
+      <label class="f">Email</label>
+      <input class="in" id="email" type="email" placeholder="you@example.com">
+      <label class="f">Phone number</label>
+      <input class="in" id="tel" type="tel" placeholder="+49 151 2345 6789">
+      <p class="hint">Add an email, a phone number, or both. We send your ticket and reminders here.</p>
+      <p class="err" id="errContact">Add at least an email or a phone number.</p>
+
+      <div id="paySec">
+        <p class="sec">Payment information</p>
+        <div class="chips" id="payMethod" style="margin-bottom:12px">
+          <button class="chip on" data-pm="card">Card</button><button class="chip" data-pm="paypal">PayPal</button><button class="chip" data-pm="apple">Apple Pay</button>
+        </div>
+        <div id="cardFields">
+          <label class="f">Card number</label>
+          <input class="in" id="cardno" inputmode="numeric" placeholder="1234 5678 9012 3456">
+          <div class="row">
+            <div><label class="f">Expiry</label><input class="in" id="exp" placeholder="MM / YY"></div>
+            <div><label class="f">CVC</label><input class="in" id="cvc" placeholder="123"></div>
+          </div>
+          <label class="f">Name on card</label>
+          <input class="in" id="cname" placeholder="Full name">
+          <p class="err" id="errCard">Fill in the card details.</p>
+        </div>
+        <div id="altPay" class="box" style="display:none;text-align:center;color:var(--mid)">You will confirm in the <b id="altName" style="color:var(--ink)"></b> window on the next step.</div>
+      </div>
+      <div id="freeNote" class="box" style="display:none;margin-top:22px"><b>This event is free.</b><p class="hint" style="margin-top:4px">No payment details needed.</p></div>
+    </div>
+    <div class="foot"><button class="btn" id="toConfirm">Continue</button></div>
+  </section>
+
+  <!-- CONFIRM -->
+  <section class="screen" id="s-confirm">
+    <div class="top"><button class="back" data-back="">‹</button><h3>Confirm and pay</h3><span class="step">2 / 2</span></div>
+    <div class="body" id="confirmBody"></div>
+    <div class="foot"><button class="btn" id="payBtn">Confirm and pay</button></div>
+  </section>
+
+  <!-- DONE -->
+  <section class="screen" id="s-done">
+    <div class="top"><span style="width:34px"></span><h3 style="text-align:center">Booking details</h3><button class="back" data-go="discover">✕</button></div>
+    <div class="body" id="doneBody"></div>
+    <div class="foot"><button class="btn" data-go="tickets">View my tickets</button><button class="btn ghost">Add to calendar</button></div>
+  </section>
+
+  <!-- TICKETS -->
+  <section class="screen" id="s-tickets">
+    <div class="top"><h3>My tickets</h3></div>
+    <div class="body" id="ticketsBody"></div>
+    <nav class="tabs"><button data-go="discover"><i></i>Discover</button><button class="on"><i></i>Tickets</button><button><i></i>Profile</button></nav>
+  </section>
+
+  <!-- FEEDBACK -->
+  <section class="screen" id="s-feedback">
+    <div class="top"><button class="back" data-back="">‹</button><h3>How was it?</h3></div>
+    <div class="body">
+      <div class="tk" style="margin-bottom:20px"><div class="ph"><span>img</span></div><div class="ti"><b id="fbTitle"></b><small id="fbSub"></small></div></div>
+      <p class="sec">Rate the event</p>
+      <div class="stars" id="stars"></div>
+      <p class="sec">What went well?</p>
+      <div class="chips" id="fbTags"></div>
+      <p class="sec">Would you go again?</p>
+      <div class="chips" id="again"><button class="chip" data-v="yes">Yes</button><button class="chip" data-v="maybe">Maybe</button><button class="chip" data-v="no">No</button></div>
+      <p class="sec">Anything else for the host?</p>
+      <textarea class="in" placeholder="Optional"></textarea>
+    </div>
+    <div class="foot"><button class="btn" id="fbSend" disabled="">Send feedback</button></div>
+  </section>
+
+  <!-- HOST -->
+  <section class="screen" id="s-host">
+    <div class="top"><button class="back" data-back="">‹</button><h3>Host an event</h3><span class="step">Step 1 / 2</span></div>
+    <div class="body">
+      <div class="ph" style="height:120px;border-radius:var(--r);margin-bottom:16px"><span>+ Add cover photo</span></div>
+      <label class="f">Event name</label>
+      <input class="in" id="hName" placeholder="e.g. Sunday Coffee Rave">
+      <div class="row">
+        <div><label class="f">Date</label><input class="in" id="hDate" type="date"></div>
+        <div><label class="f">Start</label><input class="in" id="hTime" type="time" value="19:00"></div>
+      </div>
+
+      <p class="sec">Location</p>
+      <div class="search" style="border-radius:8px"><span class="ic">⌕</span><input id="hLoc" placeholder="Search areas of interest or spots"></div>
+      <div class="suggest" id="hSuggest"></div>
+      <div class="picked" id="hPicked"><span class="tag fill">✓</span><span id="hPickedTxt"></span></div>
+
+      <p class="sec">Level of sobriety</p>
+      <div id="hSob"></div>
+
+      <p class="sec">Price charged</p>
+      <div class="chips" id="hPriceType">
+        <button class="chip on" data-pt="free">Free</button><button class="chip" data-pt="fixed">Fixed price</button><button class="chip" data-pt="pwyc">Pay what you can</button>
+      </div>
+      <div class="pricein" id="hPriceIn"><span>€</span><input class="in" id="hPrice" inputmode="decimal" placeholder="10"><span class="step">per person</span></div>
+
+      <p class="sec">Capacity</p>
+      <div class="stepper"><button data-cap="-">−</button><span id="hCap">20</span><button data-cap="+">+</button></div>
+
+      <div class="disabled-sec">
+        <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:4px">Host profile (future implementation)</p>
+        <p style="font-size:13px;margin-bottom:10px">Saved host address so guests can find the space.</p>
+        <div class="row"><input class="in" disabled="" placeholder="Street"><input class="in" disabled="" placeholder="ZIP code" style="flex:0 0 35%"></div>
+      </div>
+      <p class="err" id="errHost" style="margin-top:14px">Add a name, a date, and a location.</p>
+    </div>
+    <div class="foot"><button class="btn" id="toPreview">Preview event</button></div>
+  </section>
+
+  <!-- HOST PREVIEW -->
+  <section class="screen" id="s-hostPreview">
+    <div class="top"><button class="back" data-back="">‹</button><h3>Preview</h3><span class="step">Step 2 / 2</span></div>
+    <div class="body"><p class="hint" style="margin:0 0 12px">This is how guests will see your event.</p><div id="previewCard"></div></div>
+    <div class="foot"><button class="btn" id="createBtn">Create the event</button><button class="btn ghost" data-back="">Edit</button></div>
+  </section>
+
+  <!-- HOST DONE -->
+  <section class="screen" id="s-hostDone">
+    <div class="top"><span style="width:34px"></span><h3 style="text-align:center">Event created</h3><button class="back" data-go="start">✕</button></div>
+    <div class="body center">
+      <div class="ok">✓</div>
+      <p class="done-h">Your event is live</p>
+      <p class="hint" style="margin:6px 0 20px">Guests within 10 km can find it now.</p>
+      <div id="hostDoneCard" style="text-align:left"></div>
+    </div>
+    <div class="foot"><button class="btn" id="seeInDiscover">See it in Discover</button><button class="btn ghost" data-go="host" id="hostAnother">Host another event</button></div>
+  </section>
+
+  <!-- overlays -->
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" id="sheet"></div>
+  <div class="notif" id="notif"><div class="ai">✉</div><div style="flex:1"><small>now</small><b>Booking confirmed</b><p id="notifTxt"></p></div></div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<button class="notes-toggle" title="Show or hide notes" onclick="document.body.classList.toggle('notes')">☰</button>
+<script src="app.js"></script>
+
+
+</body></html>

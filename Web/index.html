@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Collab App: Web Wireframe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link href="fonts.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="wrap">
+      <button class="logo" data-go="home"><i>LOGO</i>Collab</button>
+      <nav class="main">
+        <button data-go="discover" data-nav="discover event info confirm done" class="on">Explore events</button>
+        <button data-go="host" data-nav="host hostPreview hostDone" class="">Host an event</button>
+        <button data-go="tickets" data-nav="tickets feedback" class="">My tickets</button>
+      </nav>
+      <div class="hdr-r"><button class="btn ghost sm" data-go="host">List your space</button><span
+          class="avatar"></span></div>
+    </div>
+  </header>
+
+  <main style="flex:1">
+
+    <!-- HOME -->
+    <section class="page" id="p-home">
+      <div class="hero">
+        <div class="wrap">
+          <div>
+            <h1>Meet people in Munich, without the bar.</h1>
+            <p>Alcohol-free and low-key events near you. Join one tonight, or host your own.</p>
+            <ul>
+              <li>Events within 10 km of you</li>
+              <li>Filter by sobriety level and price</li>
+              <li>Book and pay in two steps</li>
+            </ul>
+            <div class="choices">
+              <button class="choice" data-go="discover"><b>I want to join <span>→</span></b><small>Browse events near
+                  you and book a spot</small></button>
+              <button class="choice" data-go="host"><b>I want to host <span>→</span></b><small>Set up an event at your
+                  space and charge what you want</small></button>
+            </div>
+          </div>
+          <div class="ph"><span>hero image</span></div>
+        </div>
+      </div>
+      <div class="wrap">
+        <h2 class="sec-h">Explore events in Munich</h2>
+        <div class="grid" id="homeGrid"><button class="card" data-ev="e1">
+            <div class="ph"><span>event photo</span></div>
+            <div class="cb">
+              <h4>Sober Morning Rave</h4>
+              <p class="addr">Café Hailey<br>Türkenstraße 52, 80799 München</p>
+              <p class="price">€8 – €12 <span class="check">✓</span><small>Total ticket price</small></p>
+              <p class="meta">Alcohol-free &nbsp;|&nbsp; Sat 31 Oct &nbsp;|&nbsp; 1.2 km</p>
+            </div>
+          </button><button class="card" data-ev="e2">
+            <div class="ph"><span>event photo</span></div>
+            <div class="cb">
+              <h4>Dinner for Strangers</h4>
+              <p class="addr">Glockenbach Kitchen<br>Fraunhoferstraße 18, 80469 München</p>
+              <p class="price">€18 <span class="check">✓</span><small>Total ticket price</small></p>
+              <p class="meta">Alcohol-free &nbsp;|&nbsp; Wed 4 Nov &nbsp;|&nbsp; 2.4 km</p>
+            </div>
+          </button><button class="card" data-ev="e3">
+            <div class="ph"><span>event photo</span></div>
+            <div class="cb">
+              <h4>Run Club + Coffee</h4>
+              <p class="addr">Englischer Garten, Chinesischer Turm<br>Englischer Garten 3, 80538 München</p>
+              <p class="price">Free <span class="check">✓</span><small>Total ticket price</small></p>
+              <p class="meta">Alcohol-free &nbsp;|&nbsp; Sun 1 Nov &nbsp;|&nbsp; 3.1 km</p>
+            </div>
+          </button><button class="card" data-ev="e4">
+            <div class="ph"><span>event photo</span></div>
+            <div class="cb">
+              <h4>Board Game Night</h4>
+              <p class="addr">Spielwiese Board Café<br>Leopoldstraße 77, 80802 München</p>
+              <p class="price">€5 <span class="check">✓</span><small>Total ticket price</small></p>
+              <p class="meta">Low-alcohol &nbsp;|&nbsp; Thu 29 Oct &nbsp;|&nbsp; 4.0 km</p>
+            </div>
+          </button></div>
+        <div class="more"><button class="btn" data-go="discover">View more</button></div>
+        <h2 class="sec-h" style="margin-top:80px">How it works</h2>
+        <div class="how">
+          <div><span>01</span><b>Search nearby</b><small>See places and events within about 10 km.</small></div>
+          <div><span>02</span><b>Filter</b><small>Pick distance, sobriety level, and price range.</small></div>
+          <div><span>03</span><b>Book</b><small>Add your email or phone, pay, and get a confirmation email.</small>
+          </div>
+          <div><span>04</span><b>Give feedback</b><small>Rate the event afterwards so hosts can improve.</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCOVER -->
+    <section class="page on" id="p-discover">
+      <div class="wrap">
+        <div class="crumbs"><button data-go="home">Home</button> / Explore</div>
+        <div class="row" style="align-items:end;gap:30px">
+          <div style="flex:0 0 auto">
+            <h1 class="pt">Events near you</h1>
+            <p class="sub">Munich, around your location</p>
+          </div>
+          <div class="search" style="flex:1;max-width:620px;margin-left:auto"><span class="ic">⌕</span><input id="q"
+              placeholder="Search areas of interest, spots, or events"><button class="ic" id="qx"
+              style="display:none;padding:4px 10px">✕</button><button class="btn sm"
+              style="border-radius:999px">Search</button></div>
+        </div>
+        <div class="disc">
+          <aside class="filters">
+            <h3>Filters <button id="clearF">Clear all</button></h3>
+            <div class="fgroup"><b>Distance</b>
+              <div class="big" id="dv">10 km</div>
+              <input type="range" class="range" min="1" max="25" value="10" id="dr">
+              <div class="rangeval"><span>1 km</span><span>25 km</span></div>
+              <p class="hint">From where you are now.</p>
+            </div>
+            <div class="fgroup"><b>Level of sobriety</b>
+              <div id="fSob"><button class="opt on" data-sob="any"><span class="dot"></span><span><b>Any</b><small>Show
+                      everything</small></span></button><button class="opt " data-sob="free"><span
+                    class="dot"></span><span><b>Alcohol-free</b><small>No alcohol served or
+                      allowed</small></span></button><button class="opt " data-sob="low"><span
+                    class="dot"></span><span><b>Low-alcohol</b><small>Mostly alcohol-free, a few low-ABV
+                      options</small></span></button><button class="opt " data-sob="mixed"><span
+                    class="dot"></span><span><b>Mixed</b><small>Drinks available, alcohol-free options on the
+                      menu</small></span></button></div>
+            </div>
+            <div class="fgroup"><b>Price range</b>
+              <div id="fPrice"><button class="opt sq " data-pr="free"><span class="dot"></span><span><b>Free / pay what
+                      you can</b><small>4 events</small></span></button><button class="opt sq " data-pr="u10"><span
+                    class="dot"></span><span><b>Under €10</b><small>3 events</small></span></button><button
+                  class="opt sq " data-pr="10to20"><span class="dot"></span><span><b>€10–20</b><small>2
+                      events</small></span></button><button class="opt sq " data-pr="o20"><span
+                    class="dot"></span><span><b>Over €20</b><small>1 events</small></span></button></div>
+            </div>
+          </aside>
+          <div>
+            <div class="toolbar"><span id="count">9 events within 10 km</span></div>
+            <div id="activeF" class="active-f" style="margin: -6px 0px 18px; display: none;"></div>
+            <div id="listv">
+              <div class="grid g3"><button class="card" data-ev="h1794004392918">
+                  <div class="ph"><span>event photo</span></div>
+                  <div class="cb">
+                    <h4>asf</h4>
+                    <p class="addr">Café Hailey<br>Türkenstraße 52, 80799 München</p>
+                    <p class="price">Free <span class="check">✓</span><small>Total ticket price</small></p>
+                    <p class="meta">Alcohol-free &nbsp;|&nbsp; Fri 13 Nov &nbsp;|&nbsp; 1.2 km</p>
+                  </div>
+                </button><button class="card" data-ev="e1">
+                  <div class="ph"><span>event photo</span></div>
+                  <div class="cb">
+                    <h4>Sober Morning Rave</h4>
+                    <p class="addr">Café Hailey<br>Türkenstraße 52, 80799 München</p>
+                    <p class="price">€8 – €12 <span class="check">✓</span><small>Total ticket price</small></p>
+                    <p class="meta">Alcohol-free &nbsp;|&nbsp; Sat 31 Oct &nbsp;|&nbsp; 1.2 km</p>
+                  </div>
+                </button><button class="card" data-ev="e2">
+                  <div class="ph"><span>event photo</span></div>
+                  <div class="cb">
+                    <h4>Dinner for Strangers</h4>
+                    <p class="addr">Glockenbach Kitchen<br>Fraunhoferstraße 18, 80469 München</p>
+                    <p class="price">€18 <span class="check">✓</span><small>Total ticket price</small></p>
+                    <p class="meta">Alcohol-free &nbsp;|&nbsp; Wed 4 Nov &nbsp;|&nbsp; 2.4 km</p>
+                  </div>
+                </button><button class="card" data-ev="e3">
+                  <div class="ph"><span>event photo</span></div>
+                  <div class="cb">
+                    <h4>Run Club + Coffee</h4>
+                    <p class="addr">Englischer Garten, Chinesischer Turm<br>Englischer Garten 3, 80538 München</p>
+                    <p class="price">Free <span class="check">✓</span><small>Total ticket price</small></p>
+                    <p class="meta">Alcohol-free &nbsp;|&nbsp; Sun 1 Nov &nbsp;|&nbsp; 3.1 km</p>
+                  </div>
+                </button><button class="card" data-ev="e4">
+                  <div class="ph"><span>event photo</span></div>
+                  <div class="cb">
+                    <h4>Board Game Night</h4>
+                    <p class="addr">Spielwiese Board Café<br>Leopoldstraße 77, 80802 München</p>
+                    <p class="price">€5 <span class="check">✓</span><small>Total ticket price</small></p>
+                    <p class="meta">Low-alcohol &nbsp;|&nbsp; Thu 29 Oct &nbsp;|&nbsp; 4.0 km</p>
+                  </div>
+                </button><button class="card" data-ev="e5">
+                  <div class="ph"><span>event photo</span></div>
+                  <div class="cb">
+                    <h4>Zero-Proof Mixology Class</h4>
+                    <p class="addr">Werksviertel Hall 4<br>Atelierstraße 10, 81671 München</p>
+                    <p class="price">€24 – €30 <span class="check">✓</span><small>Total ticket price</small></p>
+                    <p class="meta">Alcohol-free &nbsp;|&nbsp; Fri 6 Nov &nbsp;|&nbsp; 5.6 km</p>
+                  </div>
+                </button><button class="card" data-ev="e9">
+                  <div class="ph"><span>event photo</span></div>
+                  <div class="cb">
+                    <h4>Sketch &amp; Tea Club</h4>
+                    <p class="addr">Westpark Pavilion<br>Westendstraße 305, 80686 München</p>
+                    <p class="price">€6 <span class="check">✓</span><small>Total ticket price</small></p>
+                    <p class="meta">Alcohol-free &nbsp;|&nbsp; Mon 2 Nov &nbsp;|&nbsp; 6.1 km</p>
+                  </div>
+                </button><button class="card" data-ev="e6">
+                  <div class="ph"><span>event photo</span></div>
+                  <div class="cb">
+                    <h4>Pay-What-You-Can Open Mic</h4>
+                    <p class="addr">Bahnwärter Thiel<br>Tumblingerstraße 29, 80337 München</p>
+                    <p class="price">Pay what you can <span class="check">✓</span><small>Total ticket price</small></p>
+                    <p class="meta">Mixed &nbsp;|&nbsp; Tue 3 Nov &nbsp;|&nbsp; 6.8 km</p>
+                  </div>
+                </button><button class="card" data-ev="e8">
+                  <div class="ph"><span>event photo</span></div>
+                  <div class="cb">
+                    <h4>Silent Disco in the Park</h4>
+                    <p class="addr">Olympiapark Theatron<br>Spiridon-Louis-Ring 21, 80809 München</p>
+                    <p class="price">€14 <span class="check">✓</span><small>Total ticket price</small></p>
+                    <p class="meta">Low-alcohol &nbsp;|&nbsp; Fri 30 Oct &nbsp;|&nbsp; 8.9 km</p>
+                  </div>
+                </button></div>
+              <div class="more"><button class="btn" onclick="toast('That is every event for now')">View more</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT -->
+    <section class="page" id="p-event">
+      <div class="wrap" id="eventWrap">
+        <div class="crumbs"><button data-go="home">Home</button> / <button data-back="">Explore</button> / Sober Morning
+          Rave</div>
+        <div class="gallery">
+          <div class="ph"><span>event photo</span></div>
+          <div class="ph"><span>photo</span></div>
+          <div class="ph"><span>photo</span></div>
+        </div>
+        <div class="ev">
+          <div>
+            <span class="tag fill">Alcohol-free</span>
+            <h1 class="pt" style="margin-top:12px">Sober Morning Rave</h1>
+            <p class="sub">Hosted by Hailey Hostess, Maxvorstadt</p>
+            <div class="facts">
+              <div class="fact"><small>When</small><b>Sat 31 Oct<br>10:00–13:00</b></div>
+              <div class="fact"><small>Distance</small><b>1.2 km<br>from you</b></div>
+              <div class="fact"><small>Price</small><b>€8 – €12</b></div>
+              <div class="fact"><small>Spots left</small><b>14 of 60</b></div>
+            </div>
+            <p class="eyebrow">About</p>
+            <p style="font-size:17px;line-height:1.5;margin-bottom:14px">Daytime dance party with coffee instead of
+              drinks.</p>
+            <div class="lines"><i style="width:100%"></i><i style="width:94%"></i><i style="width:88%"></i><i
+                style="width:60%"></i></div>
+            <p class="eyebrow">Location</p>
+            <div class="box">
+              <div><b style="font-weight:500;font-size:17px">Café Hailey</b>
+                <p class="hint">Türkenstraße 52<br>80799 München</p>
+                <p class="hint">1.2 km from you</p><button class="btn ghost sm" style="margin-top:14px">Get
+                  directions</button>
+              </div>
+            </div>
+            <p class="eyebrow">Who's going</p>
+            <div class="faces"><i></i><i></i><i></i><i></i><i></i><span class="hint" style="margin:0 0 0 22px">46 going,
+                including some first-timers</span></div>
+          </div>
+          <aside class="aside">
+            <div class="box">
+              <div class="bigprice">€8 – €12</div>
+              <p class="hint" style="margin-top:2px">per person, fees shown at checkout</p>
+              <div class="kv" style="margin-top:16px"><span>Date</span><span>Sat 31 Oct</span></div>
+              <div class="kv"><span>Time</span><span>10:00–13:00</span></div>
+              <div class="kv"><span>Sobriety</span><span>Alcohol-free</span></div>
+              <div class="kv" style="align-items:center"><span>Tickets</span>
+                <div class="stepper"><button data-q="-">−</button><span id="qtyV">1</span><button data-q="+">+</button>
+                </div>
+              </div>
+              <button class="btn block" id="joinBtn" style="margin-top:16px">Join event</button>
+              <p class="hint" style="text-align:center">14 spots left. Free cancellation up to 24 h before.</p>
+            </div><button class="hint" style="display:block;margin:12px auto 0;text-decoration:underline">♡ Save for
+              later</button>
+          </aside>
+        </div>
+        <h2 class="sec-h" style="font-size:30px;text-align:left;margin:64px 0 22px">More alcohol-free events</h2>
+        <div class="grid"><button class="card" data-ev="e2">
+            <div class="ph"><span>event photo</span></div>
+            <div class="cb">
+              <h4>Dinner for Strangers</h4>
+              <p class="addr">Glockenbach Kitchen<br>Fraunhoferstraße 18, 80469 München</p>
+              <p class="price">€18 <span class="check">✓</span><small>Total ticket price</small></p>
+              <p class="meta">Alcohol-free &nbsp;|&nbsp; Wed 4 Nov &nbsp;|&nbsp; 2.4 km</p>
+            </div>
+          </button><button class="card" data-ev="e3">
+            <div class="ph"><span>event photo</span></div>
+            <div class="cb">
+              <h4>Run Club + Coffee</h4>
+              <p class="addr">Englischer Garten, Chinesischer Turm<br>Englischer Garten 3, 80538 München</p>
+              <p class="price">Free <span class="check">✓</span><small>Total ticket price</small></p>
+              <p class="meta">Alcohol-free &nbsp;|&nbsp; Sun 1 Nov &nbsp;|&nbsp; 3.1 km</p>
+            </div>
+          </button><button class="card" data-ev="e5">
+            <div class="ph"><span>event photo</span></div>
+            <div class="cb">
+              <h4>Zero-Proof Mixology Class</h4>
+              <p class="addr">Werksviertel Hall 4<br>Atelierstraße 10, 81671 München</p>
+              <p class="price">€24 – €30 <span class="check">✓</span><small>Total ticket price</small></p>
+              <p class="meta">Alcohol-free &nbsp;|&nbsp; Fri 6 Nov &nbsp;|&nbsp; 5.6 km</p>
+            </div>
+          </button><button class="card" data-ev="e7">
+            <div class="ph"><span>event photo</span></div>
+            <div class="cb">
+              <h4>Sunset Lake Swim Social</h4>
+              <p class="addr">Feringasee Beach<br>Feringastraße 1, 85774 München</p>
+              <p class="price">Free <span class="check">✓</span><small>Total ticket price</small></p>
+              <p class="meta">Alcohol-free &nbsp;|&nbsp; Sat 7 Nov &nbsp;|&nbsp; 12.5 km</p>
+            </div>
+          </button></div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section class="page" id="p-info">
+      <div class="wrap">
+        <div class="crumbs"><button data-back="">‹ Back to event</button></div>
+        <h1 class="pt">Your information</h1>
+        <div class="steps"><span class="on"><i>1</i>Details</span>
+          <hr><span><i>2</i>Confirm and pay</span>
+          <hr><span><i>3</i>Done</span>
+        </div>
+        <div class="co">
+          <div class="main">
+            <p class="eyebrow">Contact</p>
+            <div class="row">
+              <div><label class="f">Email</label><input class="in" id="email" type="email"
+                  placeholder="you@example.com"></div>
+              <div><label class="f">Phone number</label><input class="in" id="tel" type="tel"
+                  placeholder="+49 151 2345 6789"></div>
+            </div>
+            <p class="hint">Add an email, a phone number, or both. We send your ticket and reminders there.</p>
+            <p class="err" id="errContact">Add at least an email or a phone number.</p>
+            <div id="paySec">
+              <p class="eyebrow">Payment information</p>
+              <div class="chips" id="payMethod" style="margin-bottom:6px"><button class="chip on"
+                  data-pm="card">Card</button><button class="chip" data-pm="paypal">PayPal</button><button class="chip"
+                  data-pm="apple">Apple Pay</button></div>
+              <div id="cardFields">
+                <label class="f">Card number</label><input class="in" id="cardno" inputmode="numeric"
+                  placeholder="1234 5678 9012 3456">
+                <div class="row">
+                  <div><label class="f">Expiry</label><input class="in" id="exp" placeholder="MM / YY"></div>
+                  <div><label class="f">CVC</label><input class="in" id="cvc" placeholder="123"></div>
+                  <div style="flex:2"><label class="f">Name on card</label><input class="in" id="cname"
+                      placeholder="Full name"></div>
+                </div>
+                <p class="err" id="errCard">Fill in the card details.</p>
+              </div>
+              <div id="altPay" class="box" style="display:none;margin-top:12px;color:var(--mid)">You will confirm in the
+                <b id="altName" style="color:var(--ink)">Apple Pay</b> window on the next step.</div>
+            </div>
+            <div id="freeNote" class="box" style="display:none;margin-top:28px"><b style="font-weight:500">This event is
+                free.</b>
+              <p class="hint">No payment details needed.</p>
+            </div>
+            <div style="margin-top:30px;display:flex;gap:12px;align-items:center"><button class="btn"
+                id="toConfirm">Continue</button><button class="hint" id="autofill"
+                style="text-decoration:underline;margin:0">Autofill demo data</button></div>
+          </div>
+          <aside class="aside" id="infoSum">
+            <div class="box">
+              <div class="tk" style="border:none;padding:0 0 14px;border-bottom:1px solid var(--line);border-radius:0">
+                <div class="ph"><span>img</span></div>
+                <div class="ti"><b>Sober Morning Rave</b><small>Sat 31 Oct, 10:00–13:00</small><small>Café
+                    Hailey</small></div>
+              </div>
+              <div style="margin-top:12px">
+                <div class="kv"><span>1 × €8,00</span><span>€8,00</span></div>
+                <div class="kv"><span>Service fee</span><span>€0,40</span></div>
+                <div class="kv total"><span>Total</span><span>€8,40</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONFIRM -->
+    <section class="page" id="p-confirm">
+      <div class="wrap">
+        <div class="crumbs"><button data-back="">‹ Edit details</button></div>
+        <h1 class="pt">Confirm and pay</h1>
+        <div class="steps"><span class="done"><i>✓</i>Details</span>
+          <hr><span class="on"><i>2</i>Confirm and pay</span>
+          <hr><span><i>3</i>Done</span>
+        </div>
+        <div class="co">
+          <div class="main" id="confirmMain">
+            <p class="eyebrow">Event</p>
+            <div class="box">
+              <div class="kv"><span>Event</span><span>Sober Morning Rave</span></div>
+              <div class="kv"><span>When</span><span>Sat 31 Oct, 10:00–13:00</span></div>
+              <div class="kv"><span>Where</span><span>Café Hailey, Maxvorstadt</span></div>
+              <div class="kv"><span>Sobriety</span><span>Alcohol-free</span></div>
+            </div>
+            <p class="eyebrow">Your details</p>
+            <div class="box">
+              <div class="kv"><span>Contact</span><span>abc@gmail.com, 111111111111</span></div>
+              <div class="kv"><span>Payment</span><span>Card •••• 1323</span></div><button class="hint" data-back=""
+                style="text-decoration:underline;margin-top:8px">Edit</button>
+            </div>
+            <p class="hint" style="margin-top:16px">By confirming you agree to the house rules of the host. Free
+              cancellation up to 24 h before.</p>
+          </div>
+          <aside class="aside">
+            <div class="box" id="confirmSum">
+              <div class="tk" style="border:none;padding:0 0 14px;border-bottom:1px solid var(--line);border-radius:0">
+                <div class="ph"><span>img</span></div>
+                <div class="ti"><b>Sober Morning Rave</b><small>Sat 31 Oct, 10:00–13:00</small><small>Café
+                    Hailey</small></div>
+              </div>
+              <div style="margin-top:12px">
+                <div class="kv"><span>1 × €8,00</span><span>€8,00</span></div>
+                <div class="kv"><span>Service fee</span><span>€0,40</span></div>
+                <div class="kv total"><span>Total</span><span>€8,40</span></div>
+              </div><button class="btn block" id="payBtn" style="margin-top:18px" disabled="">Processing…</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONE -->
+    <section class="page" id="p-done">
+      <div class="wrap" id="doneWrap">
+        <div style="display:flex;gap:22px;align-items:center;padding:44px 0 10px">
+          <div class="ok">✓</div>
+          <div>
+            <h1 class="pt" style="margin:0">You're going to Sober Morning Rave</h1>
+            <p class="sub">Booking CX-E14821, 1 ticket, confirmation sent to abc@gmail.com, 111111111111</p>
+          </div>
+        </div>
+        <div class="steps"><span class="done"><i>✓</i>Details</span>
+          <hr><span class="done"><i>✓</i>Confirm and pay</span>
+          <hr><span class="on"><i>3</i>Done</span>
+        </div>
+        <div class="co">
+          <div class="main">
+            <p class="eyebrow">Location details</p>
+            <div class="box" style="padding:0;overflow:hidden">
+              <div style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+                <div><b style="font-weight:500;font-size:17px">Café Hailey</b>
+                  <p class="hint">Türkenstraße 52, 80799 München<br>1.2 km from you</p><button class="btn ghost sm"
+                    style="margin-top:12px">Get directions</button>
+                </div>
+                <div>
+                  <div class="kv"><span>When</span><span>Sat 31 Oct</span></div>
+                  <div class="kv"><span>Time</span><span>10:00–13:00</span></div>
+                  <div class="kv"><span>Host</span><span>Hailey Hostess</span></div>
+                </div>
+              </div>
+            </div>
+            <p class="eyebrow">Notifications</p>
+            <div class="box">✉ We emailed your ticket. You get a reminder 24 h before, and a feedback request after the
+              event.</div>
+          </div>
+          <aside class="aside">
+            <div class="box">
+              <p class="eyebrow" style="margin-top:0">Payment status</p>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div class="bigprice">€8,40</div>
+                  <p class="hint">Card •••• 1323</p>
+                </div><span class="status-pill">● Paid</span>
+              </div>
+              <button class="btn block" data-go="tickets" style="margin-top:20px">View my tickets</button>
+              <button class="btn ghost block" style="margin-top:10px">Add to calendar</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKETS -->
+    <section class="page" id="p-tickets">
+      <div class="wrap" style="max-width:900px">
+        <div class="crumbs"><button data-go="home">Home</button> / My tickets</div>
+        <h1 class="pt">My tickets</h1>
+        <div id="ticketsBody">
+          <p class="eyebrow" style="margin-top:28px">Upcoming</p>
+          <div class="tk" style="margin-bottom:10px">
+            <div class="ph"><span>img</span></div>
+            <div class="ti"><b>Sober Morning Rave</b><small>Sat 31 Oct, 10:00–13:00</small><small>Café Hailey,
+                Maxvorstadt</small></div>
+            <button class="btn ghost sm" data-end="e1">Simulate: event ended</button>
+          </div>
+          <p class="eyebrow">Past</p>
+          <div class="tk" style="margin-bottom:10px">
+            <div class="ph"><span>img</span></div>
+            <div class="ti"><b>Coffee &amp; Crosswords</b><small>Sun 25 Oct, 11:00–13:00</small><small>Café Hailey,
+                Maxvorstadt</small></div>
+            <span class="hint" style="margin:0 10px 0 0">Feedback sent ✓</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section class="page" id="p-feedback">
+      <div class="wrap" style="max-width:760px">
+        <div class="crumbs"><button data-back="">‹ My tickets</button></div>
+        <h1 class="pt">How was it?</h1>
+        <p class="sub">Your feedback goes to the host. It takes a minute.</p>
+        <div class="tk" style="margin:24px 0 4px">
+          <div class="ph"><span>img</span></div>
+          <div class="ti"><b id="fbTitle">Coffee &amp; Crosswords</b><small id="fbSub">Sun 25 Oct, Café Hailey</small>
+          </div>
+        </div>
+        <p class="eyebrow">Rate the event</p>
+        <div class="stars" id="stars"><button class="on" data-r="1">★</button><button class="on"
+            data-r="2">★</button><button class="on" data-r="3">★</button><button class="on" data-r="4">★</button><button
+            class="on" data-r="5">★</button></div>
+        <p class="eyebrow">What went well?</p>
+        <div class="chips" id="fbTags"><button class="chip on">Met new people</button><button class="chip ">Good
+            vibe</button><button class="chip ">Host was welcoming</button><button class="chip ">Great
+            drinks</button><button class="chip ">Felt safe</button><button class="chip on">Too crowded</button><button
+            class="chip ">Hard to find</button></div>
+        <p class="eyebrow">Would you go again?</p>
+        <div class="chips" id="again"><button class="chip" data-v="yes">Yes</button><button class="chip"
+            data-v="maybe">Maybe</button><button class="chip" data-v="no">No</button></div>
+        <p class="eyebrow">Anything else for the host?</p><textarea class="in" id="fbText"
+          placeholder="Optional"></textarea>
+        <div style="margin-top:26px"><button class="btn" id="fbSend">Send feedback</button></div>
+      </div>
+    </section>
+
+    <!-- HOST -->
+    <section class="page" id="p-host">
+      <div class="wrap">
+        <div class="crumbs"><button data-go="home">Home</button> / Host an event</div>
+        <h1 class="pt">Host an event</h1>
+        <div class="steps"><span class="on"><i>1</i>Event setup</span>
+          <hr><span><i>2</i>Review</span>
+          <hr><span><i>3</i>Live</span>
+        </div>
+        <div class="co">
+          <div class="main">
+            <div class="ph" style="height:180px;border-radius:var(--r);margin-bottom:6px"><span>+ Add cover photo</span>
+            </div>
+            <label class="f">Event name</label><input class="in" id="hName" placeholder="e.g. Sunday Coffee Rave">
+            <div class="row">
+              <div><label class="f">Date</label><input class="in" id="hDate" type="date"></div>
+              <div><label class="f">Start time</label><input class="in" id="hTime" type="time" value="19:00"></div>
+            </div>
+            <label class="f">Short description</label><textarea class="in" id="hDesc" style="min-height:80px"
+              placeholder="What will guests do?"></textarea>
+
+            <p class="eyebrow">Location</p>
+            <div class="search" style="border-radius:8px"><span class="ic">⌕</span><input id="hLoc"
+                placeholder="Search areas of interest or spots"></div>
+            <div class="suggest" id="hSuggest"><button data-spot="0">Café Hailey<small>Türkenstraße 52,
+                  Maxvorstadt</small></button><button data-spot="1">Glockenbach Kitchen<small>Fraunhoferstraße 18,
+                  Glockenbachviertel</small></button><button data-spot="2">Englischer Garten, Chinesischer
+                Turm<small>Englischer Garten 3, Schwabing</small></button><button data-spot="3">Spielwiese Board
+                Café<small>Leopoldstraße 77, Schwabing</small></button><button data-spot="4">Werksviertel Hall
+                4<small>Atelierstraße 10, Berg am Laim</small></button></div>
+            <div class="picked on" id="hPicked"><span class="tag fill">✓</span><span id="hPickedTxt">Café Hailey,
+                Türkenstraße 52, 80799</span></div>
+
+            <p class="eyebrow">Level of sobriety</p>
+            <div id="hSob"><button class="opt card-opt on" data-k="free"><span
+                  class="dot"></span><span><b>Alcohol-free</b><small>No alcohol served or
+                    allowed</small></span></button><button class="opt card-opt " data-k="low"><span
+                  class="dot"></span><span><b>Low-alcohol</b><small>Mostly alcohol-free, a few low-ABV
+                    options</small></span></button><button class="opt card-opt " data-k="mixed"><span
+                  class="dot"></span><span><b>Mixed</b><small>Drinks available, alcohol-free options on the
+                    menu</small></span></button></div>
+
+            <p class="eyebrow">Price charged</p>
+            <div class="chips" id="hPriceType"><button class="chip on" data-pt="free">Free</button><button class="chip"
+                data-pt="fixed">Fixed price</button><button class="chip" data-pt="pwyc">Pay what you can</button></div>
+            <div class="pricein" id="hPriceIn"><span>€</span><input class="in" id="hPrice" inputmode="decimal"
+                placeholder="10"><span class="hint" style="margin:0;white-space:nowrap">per person</span></div>
+
+            <p class="eyebrow">Capacity</p>
+            <div class="stepper"><button data-cap="-">−</button><span id="hCap">20</span><button data-cap="+">+</button>
+            </div>
+
+            <div class="disabled-sec">
+              <p style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600">Host profile
+                (future implementation)</p>
+              <p style="font-size:14px;margin:4px 0 12px">A saved host address so guests can find the space.</p>
+              <div class="row"><input class="in" disabled="" placeholder="Street"><input class="in" disabled=""
+                  placeholder="ZIP code" style="flex:0 0 30%"></div>
+            </div>
+            <p class="err" id="errHost">Add a name, a date, and a location.</p>
+            <div style="margin-top:30px"><button class="btn" id="toPreview">Review event</button></div>
+          </div>
+          <aside class="aside">
+            <p class="eyebrow">Live preview</p>
+            <div id="hLive">
+              <div class="card">
+                <div class="ph"><span>event photo</span></div>
+                <div class="cb">
+                  <h4>asf</h4>
+                  <p class="addr">Café Hailey<br>Türkenstraße 52, 80799 München</p>
+                  <p class="price">Free <span class="check">✓</span><small>Total ticket price</small></p>
+                  <p class="meta">Alcohol-free &nbsp;|&nbsp; Fri 13 Nov &nbsp;|&nbsp; 1.2 km</p>
+                </div>
+              </div>
+            </div>
+            <p class="hint">Guests see this card in Explore.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOST PREVIEW -->
+    <section class="page" id="p-hostPreview">
+      <div class="wrap">
+        <div class="crumbs"><button data-back="">‹ Edit event</button></div>
+        <h1 class="pt">Review your event</h1>
+        <div class="steps"><span class="done"><i>✓</i>Event setup</span>
+          <hr><span class="on"><i>2</i>Review</span>
+          <hr><span><i>3</i>Live</span>
+        </div>
+        <div class="co">
+          <div class="main" id="previewMain">
+            <p class="eyebrow">How guests see it in Explore</p>
+            <div style="max-width:320px">
+              <div class="card">
+                <div class="ph"><span>event photo</span></div>
+                <div class="cb">
+                  <h4>asf</h4>
+                  <p class="addr">Café Hailey<br>Türkenstraße 52, 80799 München</p>
+                  <p class="price">Free <span class="check">✓</span><small>Total ticket price</small></p>
+                  <p class="meta">Alcohol-free &nbsp;|&nbsp; Fri 13 Nov &nbsp;|&nbsp; 1.2 km</p>
+                </div>
+              </div>
+            </div>
+            <p class="eyebrow">Event page</p>
+            <div class="box">
+              <div class="kv"><span>Name</span><span>asf</span></div>
+              <div class="kv"><span>When</span><span>Fri 13 Nov, 19:00–22:00</span></div>
+              <div class="kv"><span>Where</span><span>Café Hailey, Türkenstraße 52</span></div>
+              <div class="kv"><span>About</span><span style="text-align:right;max-width:60%">asdf</span></div>
+            </div>
+          </div>
+          <aside class="aside">
+            <div class="box">
+              <div id="previewSum">
+                <div class="kv"><span>Sobriety</span><span>Alcohol-free</span></div>
+                <div class="kv"><span>Price charged</span><span>Free</span></div>
+                <div class="kv"><span>Capacity</span><span>20 guests</span></div>
+                <div class="kv"><span>Visible to</span><span>People within 10 km</span></div>
+              </div><button class="btn block" id="createBtn" style="margin-top:18px">Create the event</button><button
+                class="btn ghost block" data-back="" style="margin-top:10px">Edit</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOST DONE -->
+    <section class="page" id="p-hostDone">
+      <div class="wrap" style="max-width:820px;text-align:center;padding-top:50px">
+        <div class="ok" style="margin:0 auto 18px">✓</div>
+        <h1 class="pt">Your event is live</h1>
+        <p class="sub">People within 10 km can find it in Explore now.</p>
+        <div id="hostDoneCard" style="max-width:320px;margin:30px auto"><button class="card" data-ev="h1794004392918">
+            <div class="ph"><span>event photo</span></div>
+            <div class="cb">
+              <h4>asf</h4>
+              <p class="addr">Café Hailey<br>Türkenstraße 52, 80799 München</p>
+              <p class="price">Free <span class="check">✓</span><small>Total ticket price</small></p>
+              <p class="meta">Alcohol-free &nbsp;|&nbsp; Fri 13 Nov &nbsp;|&nbsp; 1.2 km</p>
+            </div>
+          </button></div>
+        <div style="display:flex;gap:12px;justify-content:center"><button class="btn" id="seeInDiscover">See it in
+            Explore</button><button class="btn ghost" id="hostAnother">Host another event</button></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div><b style="color:var(--ink);font-weight:600">Collab</b>
+        <p style="margin-top:6px">Wireframe for DESN 44208, Munich</p>
+      </div>
+      <div class="cols">
+        <div><b>Explore</b><span>Events</span><span>Areas</span></div>
+        <div><b>Host</b><span>List your space</span><span>Pricing</span></div>
+        <div><b>About</b><span>Team</span><span>Contact</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="notif" id="notif">
+    <div class="ai">✉</div>
+    <div style="flex:1"><small>now</small><b>Booking confirmed</b>
+      <p id="notifTxt">Your spot at Sober Morning Rave (Sat 31 Oct) is confirmed. Click for details.</p>
+    </div>
+  </div>
+  <div class="toast" id="toast">Thanks! The host got your feedback</div>
+
+  <button class="flowbtn" id="flowBtn">◇ User flow</button>
+  <div class="flow" id="flow">
+    <h5>Entry</h5>
+    <ol>
+      <li><button data-go="home" class="">Two options: User or Host <small>Louisa</small></button></li>
+    </ol>
+    <h5>User: I want to join</h5>
+    <ol>
+      <li><button data-go="discover" class="on">Search + filters <small>Louisa, Darian, Yamin</small></button></li>
+      <li><button data-go="event" class="">Select event <small>Louisa</small></button></li>
+      <li><button data-go="info" class="">Fill in info + payment <small>Louisa</small></button></li>
+      <li><button data-go="confirm" class="">Confirm / Pay <small>Louisa</small></button></li>
+      <li><button data-go="done" class="">Review details + status <small>Darian</small></button></li>
+      <li><button data-go="tickets" class="">My tickets <small>Rajat</small></button></li>
+      <li><button data-go="feedback" class="">Feedback after event <small>Rajat</small></button></li>
+    </ol>
+    <h5>Host: I want to host events</h5>
+    <ol>
+      <li><button data-go="host" class="">Event setup <small>Louisa, Darian</small></button></li>
+      <li><button data-go="hostPreview" class="">Review</button></li>
+      <li><button data-go="hostDone" class="">Create the event <small>Louisa</small></button></li>
+    </ol>
+    <div class="note">
+      <p id="noteTxt">Lists places and events nearby (10 km default). The search bar finds areas or spots. The sidebar
+        filters by distance, sobriety, and price.</p>
+      <div class="by" id="noteBy">Stickies: list places ~10 km (Yamin), distance filter + search bar (Darian), sobriety
+        + price filters (Louisa)</div>
+    </div>
+    <button class="reset" onclick="resetAll()">Reset prototype</button>
+    <p style="margin-top:8px;font-size:13px"><a href="https://gunes.ca/collab_app_mobile.html"
+        style="color:var(--ink)">Open the mobile version →</a></p>
+  </div>
+
+  <button class="notes-toggle" title="Show or hide notes" onclick="document.body.classList.toggle('notes')">☰</button>
+  <script src="app.js"></script>
+
+
+</body>
+
+</html>
